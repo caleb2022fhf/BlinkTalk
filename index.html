@@ -1,144 +1,200 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Login Page</title>
-    <style>
-        body {
-            background: black;
-            font-family: Arial, sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            margin: 0;
-        }
-        header {
-            color: #00ffff;
-            font-size: 48px;
-            font-weight: bold;
-            text-shadow: 2px 2px 5px #ff00ff;
-            margin-bottom: 30px;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            letter-spacing: 3px;
-            text-align: center;
-        }
-        .login-box {
-            background: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(255,255,255,0.2);
-            width: 300px;
-            text-align: center;
-            position: relative;
-        }
-        .input-container {
-            position: relative;
-            margin-bottom: 10px;
-        }
-        input {
-            width: 100%;
-            padding: 10px;
-            padding-right: 40px;
-            margin: 10px 0;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-        }
-        .toggle-eye {
-            position: absolute;
-            top: 50%;
-            right: 12px;
-            transform: translateY(-50%);
-            cursor: pointer;
-            fill: #555;
-            width: 20px;
-            height: 20px;
-        }
-        button, button.login-btn, button.secondary, button.link-btn {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border-radius: 5px;
-        }
-        button.login-btn {
-            border: none;
-            background: #007bff;
-            color: white;
-            cursor: pointer;
-        }
-        button.login-btn:hover {
-            background: #0056b3;
-        }
-        button.secondary {
-            background: #28a745;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-        button.secondary:hover {
-            background: #1f7a32;
-        }
-        button.link-btn {
-            background: none;
-            border: none;
-            color: #007bff;
-            text-decoration: underline;
-            cursor: pointer;
-            padding: 5px 0;
-        }
-        button.link-btn:hover {
-            color: #0056b3;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>BlinkTalk - Login</title>
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      color: white;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    h1 {
+      margin: 60px 0 30px;
+      font-size: 3.5rem;
+      text-shadow: 0 0 15px rgba(255,255,255,0.4);
+      letter-spacing: 3px;
+    }
+
+    .container {
+      background: rgba(255,255,255,0.12);
+      backdrop-filter: blur(10px);
+      border-radius: 16px;
+      padding: 40px 50px;
+      width: 100%;
+      max-width: 420px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.37);
+      border: 1px solid rgba(255,255,255,0.18);
+      margin-bottom: 40px;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    label {
+      display: block;
+      margin: 20px 0 8px;
+      font-size: 1.1rem;
+    }
+
+    input {
+      width: 100%;
+      padding: 14px;
+      border: none;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      background: rgba(255,255,255,0.25);
+      color: white;
+      outline: none;
+    }
+
+    input::placeholder {
+      color: rgba(255,255,255,0.7);
+    }
+
+    input:focus {
+      background: rgba(255,255,255,0.35);
+      box-shadow: 0 0 0 2px rgba(255,255,255,0.4);
+    }
+
+    button {
+      width: 100%;
+      padding: 16px;
+      margin: 25px 0 15px;
+      background: #00d4ff;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 1.3rem;
+      cursor: pointer;
+      transition: all 0.25s;
+    }
+
+    button:hover {
+      background: #00b7e0;
+      transform: translateY(-2px);
+    }
+
+    .switch-link {
+      text-align: center;
+      margin-top: 20px;
+      color: #a0d8ff;
+      cursor: pointer;
+    }
+
+    .switch-link:hover {
+      color: white;
+      text-decoration: underline;
+    }
+
+    .info {
+      margin-top: auto;
+      padding: 20px;
+      font-size: 0.9rem;
+      opacity: 0.8;
+      text-align: center;
+    }
+  </style>
 </head>
 <body>
-<header>Net Chat</header>
-<div class="login-box">
-    <h2>Login</h2>
+
+  <h1>BlinkTalk</h1>
+
+  <div class="container" id="loginSection">
     <form id="loginForm">
-        <label>Email:</label>
-        <input type="text" id="userInput" required>
-        <div class="input-container">
-            <label>PIN:</label>
-            <input type="password" id="password" required>
-            <svg class="toggle-eye" onclick="togglePassword('password', this)" viewBox="0 0 24 24">
-                <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zm0 12c-2.49 0-4.5-2.01-4.5-4.5S9.51 7.5 12 7.5 16.5 9.51 16.5 12 14.49 16.5 12 16.5zm0-7c-1.38 0-2.5 1.12-2.5 2.5S10.62 14.5 12 14.5 14.5 13.38 14.5 12 13.38 9.5 12 9.5z"/>
-            </svg>
-        </div>
-        <button type="submit" class="login-btn">Login</button>
+      <label for="netid">Net ID</label>
+      <input type="text" id="netid" placeholder="Enter your Net ID" required autofocus />
+
+      <label for="password">Password</label>
+      <input type="password" id="password" placeholder="Enter your password" required />
+
+      <button type="submit">Submit / Log In</button>
     </form>
-    <!-- Links -->
-    <button class="link-btn" onclick="window.location.href='Untitled-16.html'">Forgot Password?</button>
-    <button class="link-btn" onclick="window.location.href='interemail.html'">Other Issue</button>
-    <button class="secondary" onclick="window.location.href='caleb2.html'">Create account</button>
-    <button class="secondary" onclick="window.location.href='Untitled-1.html'">Caleb</button>
-    <button class="secondary" onclick="window.location.href='bial.html'">Bial</button>
-</div>
-<script>
-const loginForm = document.getElementById('loginForm');
-loginForm.addEventListener('submit', function(e){
-    e.preventDefault();
-    const userInput = document.getElementById('userInput').value;
-    const password = document.getElementById('password').value;
-    // Reba localStorage ya registered users
-    let users = JSON.parse(localStorage.getItem('registeredUsers')) || [];
-    let found = users.find(u => u.email === userInput && u.pin === password);
-    if(found){
-        window.location.href = 'Untitled-5.html';
-    } else {
-        alert("No account found. Please create an account.");
+
+    <div class="switch-link" onclick="showCreate()">Create Account →</div>
+  </div>
+
+  <div class="container hidden" id="createSection">
+    <form id="createForm">
+      <label for="new-netid">New Net ID</label>
+      <input type="text" id="new-netid" placeholder="Choose your Net ID" required />
+
+      <label for="new-password">New Password</label>
+      <input type="password" id="new-password" placeholder="Choose a strong password" required />
+
+      <button type="submit">Create Account</button>
+    </form>
+
+    <div class="switch-link" onclick="showLogin()">← Back to Login</div>
+  </div>
+
+  <div class="info">
+    Use shortcuts:<br>
+    Ctrl + Alt + D → focus Net ID<br>
+    Ctrl + Alt + P → focus Password<br>
+    Ctrl + L → show Login page<br>
+    Ctrl + C → show Create account
+  </div>
+
+  <script>
+    // Show/hide sections (single-page "navigation")
+    function showLogin() {
+      document.getElementById('loginSection').classList.remove('hidden');
+      document.getElementById('createSection').classList.add('hidden');
     }
-});
-function togglePassword(id, icon) {
-    const input = document.getElementById(id);
-    if(input.type === 'password') {
-        input.type = 'text';
-        icon.style.fill = '#007bff';
-    } else {
-        input.type = 'password';
-        icon.style.fill = '#555';
+
+    function showCreate() {
+      document.getElementById('loginSection').classList.add('hidden');
+      document.getElementById('createSection').classList.remove('hidden');
     }
-}
-</script>
+
+    // Keyboard shortcuts (working in modern browsers)
+    document.addEventListener('keydown', function(e) {
+      // Ctrl + Alt + D → focus Net ID
+      if (e.ctrlKey && e.altKey && e.key.toLowerCase() === 'd') {
+        e.preventDefault();
+        document.getElementById('netid').focus();
+      }
+
+      // Ctrl + Alt + P → focus Password
+      if (e.ctrlKey && e.altKey && e.key.toLowerCase() === 'p') {
+        e.preventDefault();
+        document.getElementById('password').focus();
+      }
+
+      // Ctrl + L → show login
+      if (e.ctrlKey && !e.altKey && !e.shiftKey && e.key.toLowerCase() === 'l') {
+        e.preventDefault();
+        showLogin();
+      }
+
+      // Ctrl + C → show create account
+      if (e.ctrlKey && !e.altKey && !e.shiftKey && e.key.toLowerCase() === 'c') {
+        e.preventDefault();
+        showCreate();
+      }
+    });
+
+    // Fake form submit (just demo alert)
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('Logging in with Net ID: ' + document.getElementById('netid').value);
+    });
+
+    document.getElementById('createForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('Creating account with Net ID: ' + document.getElementById('new-netid').value);
+    });
+  </script>
+
 </body>
 </html>
